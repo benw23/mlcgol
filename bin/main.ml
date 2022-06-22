@@ -57,6 +57,5 @@ let () =
   let scale = 2 in
   while true do
     render !state scale;
-    print_int !state.(0).(0);
     state := step !state;
   done;;
