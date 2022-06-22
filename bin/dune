@@ -1,0 +1,4 @@
+(executable
+ (public_name cgol)
+ (name main)
+ (libraries graphics))
