@@ -35,6 +35,7 @@ let randomize state =
   done;;
 
 let rendergrid state scale (panx,pany) =
+  draw_rect (int_of_float (panx*.scale)-1) (int_of_float (pany*.scale)-1) ((int_of_float (float_of_int (Array.length state)*.scale))+1) ((int_of_float (float_of_int (Array.length state.(0))*.scale))+1);
   for y = 0 to (Array.length state)-1 do
     for x = 0 to (Array.length (state.(y)))-1 do
       let tx = int_of_float ((panx+.(float_of_int x))*.scale) in
