@@ -1,4 +1,4 @@
 (executable
  (public_name cgol)
  (name main)
- (libraries graphics))
+ (libraries graphics unix))
