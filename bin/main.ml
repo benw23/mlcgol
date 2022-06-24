@@ -96,25 +96,28 @@ let () =
 
     if key_pressed () then
       let k = read_key () in
-      if k == ' ' then paused := not !paused
-      else if k == 'q' then state := step !state
-      else if k == 'z' then skip := Int.max 1 (!skip - 1)
-      else if k == 'x' then skip := !skip + 1
-      else if k == 'i' then scale := !scale +. 0.25
-      else if k == 'o' then scale := Float.max 0.25 (!scale -. 0.25)
-      else if k == 'w' then yv := !yv -. (8./.(!scale))
-      else if k == 's' then yv := !yv +. (8./.(!scale))
-      else if k == 'a' then xv := !xv +. (8./.(!scale))
-      else if k == 'd' then xv := !xv -. (8./.(!scale))
-      else if k == 'c' then state := (Array.make_matrix (Array.length !state) (Array.length !state.(0)) 0)
-      else if k == 'g' then state := (Array.make_matrix (Array.length !state+10) (Array.length !state.(0)+10) 0)
-      else if k == 'h' then state := (Array.make_matrix (Array.length !state-10) (Array.length !state.(0)-10) 0)
-      else if k == 'r' then randomize state;
+      match k with
+        | ' ' -> paused := not !paused
+        | 'q' -> state := step !state
+        | 'z' -> skip := Int.max 1 (!skip - 1)
+        | 'x' -> skip := !skip + 1
+        | 'i' -> scale := !scale +. 0.25
+        | 'o' -> scale := Float.max 0.25 (!scale -. 0.25)
+        | 'w' -> yv := !yv -. (2./.(!scale))
+        | 's' -> yv := !yv +. (2./.(!scale))
+        | 'a' -> xv := !xv +. (2./.(!scale))
+        | 'd' -> xv := !xv -. (2./.(!scale))
+        | 'c' -> state := (Array.make_matrix (Array.length !state) (Array.length !state.(0)) 0)
+        | 'g' -> state := (Array.make_matrix (Array.length !state+10) (Array.length !state.(0)+10) 0)
+        | 'h' -> state := (Array.make_matrix (Array.length !state-10) (Array.length !state.(0)-10) 0)
+        | 'r' -> randomize state
+        | _ -> ();
+      ;
     ;
 
     panx := !panx +. !xv;
     pany := !pany +. !yv;
 
-    xv := !xv *. 0.8;
-    yv := !yv *. 0.8;
+    xv := !xv *. 0.9;
+    yv := !yv *. 0.9;
   done;;
